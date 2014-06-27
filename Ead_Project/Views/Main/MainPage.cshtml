@@ -1,0 +1,206 @@
+﻿@model Ead_Project.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style>
+        body {
+            font-size: .85em;
+            font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+            color: #232323;
+            background-color: #fff;
+        }
+
+        header, footer, nav, section {
+            display: block;
+        }
+
+
+        /* Styles for basic forms
+        -----------------------------------------------------------*/
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 0 1.4em 1.4em 1.4em;
+            margin: 0 0 1.5em 0;
+        }
+
+        legend {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        textarea {
+            min-height: 75px;
+        }
+
+        .editor-label {
+            margin: 1em 0 0 0;
+        }
+
+        .editor-field {
+            margin: 0.5em 0 0 0;
+        }
+
+
+        /* Styles for validation helpers
+        -----------------------------------------------------------*/
+        .field-validation-error {
+            color: #f00;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        .input-validation-error {
+            border: 1px solid #f00;
+            background-color: #fee;
+        }
+
+        .validation-summary-errors {
+            font-weight: bold;
+            color: #f00;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+
+        #plus {
+            font-size: 20px;
+        }
+        #stumble {
+            font-size: 20px;
+        }
+
+        .thumbdn {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+            margin-left: 250px;
+        }
+
+        .home {
+            margin-left: 500px;
+        }
+        #list{
+            font-size:20px;
+            margin-top:8px;
+            background-color:HighlightText;
+        }
+       /*/ .dropdown:hover >ul.dropdown-menu {
+            display:block;
+        }*/
+        
+        
+    </style>
+    <script>
+        $(document).ready(function () {
+            function JSonpCallback(json) {
+                document.getElementById('main').innerHtml = json.result;
+            }
+
+            $('#stumble').click(function () {
+                var v = $('#list').val();
+                $.getJSON("/Main/GetLink?L=" + v, function (data) {
+                    alert(data);
+                    var pageUrl = "http://www.google.com/";
+                    $.ajax({
+                        type: "GET",
+                        url: pageUrl,
+                        contentType: "application/json;charset=utf-8",
+                        crossDomain: true,
+                        data: data,
+                        dataType: "jsonp",
+                        sucess: function (msg) { JSonpCallaback(msg) },
+
+
+                    });
+                    $('#ser').click(function () {
+
+
+                    });
+                    //$.getJSON("http://google.com?callback=?", function (data) {
+                    //    // Get the element with id summary and set the inner text to the result.
+                    //    $('#main').load(data.result);
+                    //});
+                    //$.get("http://google.com", { callback: "?" }, "jsonp", function (data) {
+                    //    $('#main').text(data.result);
+                    //});
+                    //    $.ajax({
+                    //        url: 'http://news.bbc.co.uk',
+                    //        type: 'GET',
+                    //        success: function (res) {
+                    //            var headline = $(res.responseText).find('#main').text();
+                    //            alert(headline);
+                    //        }
+                    //    });
+                    //});
+
+                });
+            });
+
+        });
+        </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="=active"><a href=@Url.Action("AddLink", "Main", new {us=@ViewBag.u })><span class=" glyphicon glyphicon-plus" id="plus"></span></a></li>
+                <li class="=active"><a href="#"><span class="glyphicon glyphicon-comment" id="plus"></span></a></li>
+                <li class="=active"><a id="ser"><span class="glyphicon glyphicon-export " id="plus"></span></a></li>
+                <li class="dropdown">
+                    @*<a href="#" data-toggle="dropdown" class="dropdown-toggle" id="plus">All Interests<b class="caret"></b></a>*@
+                    <select id="list">
+                        <option value="0">All Interests</option>
+        @*<option value="1">Action Movies</option>
+        <option value="2">Cell Phones</option>
+        <option value="3">Music</option>
+        <option value="4">Online Games</option>
+        <option value="5">Quotes</option>
+        <option value="6">Sports</option>
+        <option value ="7">Technology</option>
+
+
+    </select>*@
+                    @foreach (var i in @ViewBag.inter)
+                    {
+                        
+                        <option value=@i> @i</option> 
+                    }
+                    </select>
+                    @*<ul class="dropdown-menu" id="select_ul">   
+                        <li>Inbox</li>
+                        <li>Drafts</li>
+                        <li>Sent Items</li>
+                        <li>Trash</li>
+                    </ul>*@
+               </li>
+
+                <li><a href="#"><span class="glyphicon glyphicon-thumbs-down thumbdn" id="plus"></span></a></li>
+                <li><input type="button" class="btn btn-danger" value="Stumble" id="stumble" /></li>
+                <li><a href="#"><span class="glyphicon glyphicon-thumbs-up" id="plus"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-home home" id="plus"></span></a></li>
+                @*<li><span class="glyphicon glyphicon-user" id="plus"></span></li>*@
+                <li><a href="@Url.Action("UserProfile", "Main", new {u=@ViewBag.u })"><span class="glyphicon glyphicon-user" id="plus"></span></a></li>
+            </ul>
+
+        </div>
+    </div>
+    <div id="main">
+    </div>
+</body>
+</html>

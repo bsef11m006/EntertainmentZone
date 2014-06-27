@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/jquery.js"></script>
+
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>SignUp Process</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="~/Content/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="~/Content/styles.css" rel="stylesheet">
+        <style>
+            .checkbox-grid li {
+                display: block;
+                float: left;
+                width: 25%;
+            }
+        </style>
+	</head>
+	<body>
+<!--login modal-->
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">Intrests</h1>
+      </div>
+      <div class="modal-body">
+          <form action="/SignUp/CheckInterest" method="post">
+              <ul class="checkbox-grid">
+                  <li><input type="checkbox" name="text1" value="value1" /><label for="text1">Sports</label></li>
+                  <li><input type="checkbox" name="text2" value="value2" /><label for="text2">Action Movies</label></li>
+                  <li><input type="checkbox" name="text3" value="value3" /><label for="text3">Cell Phones</label></li>
+                  <li><input type="checkbox" name="text4" value="value4" /><label for="text4">Online Games</label></li>
+                  <li><input type="checkbox" name="text5" value="value5" /><label for="text5">Quotes</label></li>
+                  <li><input type="checkbox" name="text6" value="value6" /><label for="text6">Technology</label></li>
+                  <li><input type="checkbox" name="text7" value="value7" /><label for="text7">Music</label></li>
+                  <li><input type="hidden" value=@ViewBag.usr name="usr" /> </li>
+
+              </ul>
+              <br />
+              <br />
+              <input type="submit" value="Done" class="btn btn-default" /> 
+          </form>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="b3">Next</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+	<!-- script references -->
+		<script src="~/Scripts/jquery.min.js"></script>
+		<script src="~/Scripts/bootstrap.min.js"></script>
+		<script src="~/Scripts/scripts.js"></script>
+	</body>
+</html>

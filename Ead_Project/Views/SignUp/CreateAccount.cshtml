@@ -1,0 +1,200 @@
+﻿@model Ead_Project.Models.User
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('/Content/themes/base/images/homepage.jpg');
+        }
+
+        #log {
+            height: 56px;
+            width: 80px;
+           // image-orientation: auto;
+        }
+
+        #h1 {
+            text-emphasis-style: filled;
+            color: white;
+            font-size: 40px;
+        }
+
+        .conta {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -250px;
+            margin-left: -240px;
+        }
+
+        .conta2 {
+            position:relative;
+            top: 50%;
+            left: 60%;
+            line-height: 400%;
+            margin-top: -160px;
+            margin-left: -240px;
+        }
+
+        #btn_submit {
+            height: 50px;
+            width: 240px;
+        }
+
+        #t1, #t2, #t3, #t4,#t5,#t6 {
+            height: 40px;
+            width: 240px;
+            font-size: large;
+        }
+
+        #spacing {
+            line-height: 350%;
+        }
+
+        #date {
+            width: 240px;
+        }
+
+        #birthday {
+            font-size: small;
+        }
+
+        #h3 {
+            color: white;
+            font-size: small;
+        }
+
+        #p {
+            color: white;
+        }
+
+        #btn_signup, #btn_check {
+            width: 100px;
+            height: 35px;
+        }
+
+        #h2 {
+            color: white;
+            font-size: medium;
+        }
+
+        #s {
+            color: white;
+        }
+    </style>
+    <script src="~/jquery-2.1.1.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#btn_signup').attr('disabled','disabled');
+          $('#btn_check').click(function () {
+
+                var name = $('#t1').val();
+                var username = $('#t2').val();
+               $.getJSON("/SignUp/CheckUser?U=" + username, function (data) {
+
+                    if (data)
+                        $('#result').text("Username Already Exists");
+                    else {
+                        $('#result').text("Username Available");
+                        $('#btn_signup').removeAttr('disabled');
+                    }
+                });
+
+            });
+
+            /*   $('#btn_signup').click(function () {
+                    var name = $('#t1').val();
+                    var username = $('#t2').val();
+                    var email = $('#t3').val();
+                    var password = $('#t4').val();
+                    $.getJson("/SignUp/AddUser?N=" + name + "&U=" + username + "&E=" + email + "&P=" + password, function (data) {
+
+                        alert("Called");
+                    });
+                    });*/
+        });
+    </script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li class="badge">
+                    <input type="image" class="btn btn-default" src="~/logo2.jpg" height='56' width='60' />
+                </li>
+                <li><a class="navbar-brand" href="~/Home/Index">Entertainment Zone</a></li>
+            </ul>
+        </div>
+        <div>
+            <form class="navbar-form navbar-left pull-right" role="search">
+                <input id="login" type="image" class="btn btn-default" src="~/user_login.jpg" height="56" width="70" />
+                @*<input id="log" type="submit" class="btn btn-default" value="Login" formmethod="get" formaction="/Home/Index" />*@
+                <button id="log" class="btn btn-default" type="submit" formmethod="get" formaction="/Home/Index" >Chuss</button>
+
+            </form>
+        </div>
+
+    </nav>
+    <div style=" top: 50%; left: 50%; margin-top: 45px; margin-left: 390px; ">
+        <h1 id="h1"> Join Entertainment Zone Today </h1>
+    </div>
+
+
+    <div class="conta2">
+@using (Html.BeginForm("AddUser", "SignUp", FormMethod.Post))
+{
+        <div id="spacing">
+            <br /><br /><br /><br />
+            <button class="btn btn-primary" id="btn_submit" type="submit"> <strong>Connect With  Facebook</strong> </button><br />
+            <h2 id="h2"> Or Sign Up Using Email</h2>
+            <div>
+                @Html.LabelFor(m => m.Name);
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Name, null, new { @id = "t1", @placeholder = "Name" })
+                @Html.ValidationMessageFor(m => m.Name)
+                <br />
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Username, null, new { @id = "t2", @placeholder = "Username" });@Html.ValidationMessageFor(m => m.Username);<br />
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Email, null, new { @id = "t3", @placeholder = "Email" });@Html.ValidationMessageFor(m => m.Email);<br />
+            </div>
+            <div>
+                @Html.PasswordFor(m => m.Password, new { @id = "t4", @placeholder = "Password" })@Html.ValidationMessageFor(m => m.Password);<br />
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.DOB, null, new { @id = "t5", @placeholder = "Date Of Birth" })
+                @Html.ValidationMessageFor(m => m.DOB);<br />
+            </div>
+            <div>
+                @*Upload Image<input type="file" name="image" />*@  
+                @Html.TextBoxFor(m => m.Image,new {@id="t6" ,type="file"})
+                @Html.ValidationMessageFor(m => m.Image);<br />
+            </div>
+        </div>
+        <div>
+            @Html.RadioButtonFor(m => m.Gender, "Male", true)
+            <strong>
+        <span id="s">Male</span></strong>
+        @Html.RadioButtonFor(m => m.Gender, "Male", true); <strong>
+        <span id="s">Female</span></strong>
+            @Html.ValidationMessageFor(m => m.Gender)
+            
+</div>
+
+            <button class="btn btn-success" id="btn_signup" type="submit"><strong>Sign Up</strong></button>
+}
+        <button class="btn btn-default" id="btn_check"><strong>Check</strong></button>
+        <div id="result" style="color:white"> TExt Must be shown here</div>
+       
+    </div>
+</body>
+</html>

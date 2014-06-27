@@ -1,0 +1,143 @@
+﻿@model Ead_Project.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+
+    <style>
+        body {
+            background-image: url('/Content/themes/base/images/homepage.jpg');
+        }
+
+        .conta {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -140px;
+        }
+
+        .conta2 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -200px;
+            margin-left: -240px;
+        }
+
+        #t1, #t2 {
+            height: 40px;
+            width: 250px;
+            font-size: large;
+        }
+
+        #fb {
+            height: 50px;
+            width: 70px;
+            background-size: cover;
+            border-image-repeat: stretch;
+        }
+
+        #join {
+            height: 50px;
+            width: 110px;
+        }
+
+        #btn_submit {
+            height: 50px;
+            width: 187px;
+        }
+
+        #head {
+            text-emphasis-style: filled;
+            color: white;
+            font-size: 40px;
+        }
+
+        #spacing {
+            line-height: 350%;
+        }
+
+        #h2 {
+            color: white;
+            margin-left: 40px;
+        }
+
+        #btn_signin {
+            width: 100px;
+            height: 35px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+
+        /*   $('#btn_signin').click(function () {
+                var password = $('#t2').val();
+                var username = $('#t1').val();
+               
+                $.getJSON("/Home/CheckLogin?U="+username+"&P="+password,function (data)
+                { 
+                    if (data)
+                    {
+                        alert('Logged In');
+                    }
+                    else
+                    {
+                        alert('Not Logged In');
+
+                    }
+                });
+            });*/
+
+        });
+    </script>
+
+
+
+</head>
+<body id="body1">
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li class="badge">
+                    <input type="image" class="btn btn-default" src="~/logo2.jpg" height='56' width='60' />
+                </li>
+                <li><a class="navbar-brand" href="/Index">Entertainment Zone</a></li>
+            </ul>
+        </div>
+        <div>
+            <form class="navbar-form navbar-left pull-right" role="search">
+
+                <button id="join" class="btn btn-success" type="submit" formmethod="get" formaction="/SignUp/CreateAccount">Join For Free</button>
+            </form>
+        </div>
+
+    </nav>
+    <div class="conta2">
+        <h1 id="head">Sign In To Entertainment Zone</h1>
+    </div>
+@using (Html.BeginForm("MainPage", "Home", FormMethod.Post))
+{
+    <div class="conta">
+   
+        <div id="spacing">
+            <input type="image" id="fb" class="btn btn-default" src="~/fb_logo2.jpg" />
+            <button class="btn btn-primary" id="btn_submit" type="submit"> <strong>Sign In With  Facebook</strong> </button><br />
+            <h2 id="h2"> OR</h2>
+
+
+            @Html.TextBoxFor(m => m.Username, null, new { @id = "t1", @placeholder = "Username" });<br />
+            @Html.PasswordFor(m => m.Password, new { @id = "t1", @placeholder = "Password" });<br />
+            
+
+                <button id="btn_signin" class="btn btn-danger" type="submit">Sign In</button>
+            
+        </div>
+    </div>
+}
+</body>
+</html>
+

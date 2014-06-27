@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.js"></script>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>SignUp Process</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="~/Content/styles.css" rel="stylesheet">
+    <style>
+        .checkbox-grid li {
+            display: block;
+            float: left;
+            width: 25%;
+        }
+    </style>
+</head>
+<body>
+    <!--login modal-->
+    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="text-center">Intrests</h1>
+                </div>
+                @Html.BeginForm("LinkSearch", "Main", FormMethod.Post){
+                <div class="modal-body">
+                    <label>Interest</label>
+                    <input type="text" name="interest" />
+                    <br />
+                    <input type="submit" value="Done" class="btn btn-default" />
+
+                </div>
+                }
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" id="b3">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- script references -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/scripts.js"></script>
+</body>
+</html>

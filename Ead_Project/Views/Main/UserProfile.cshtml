@@ -1,0 +1,52 @@
+﻿@model Ead_Project.Models.User
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<div class="container">
+    <div class="span3 well">
+        <center>
+            <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src=@ViewBag.i name="aboutme" width="140" height="140" class="img-circle"></a>
+            <h3>@ViewBag.n</h3>
+            <em>click my face for more</em>
+        </center>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">More About @ViewBag.n</h4>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <img src="~/Content/themes/base/images/checkimg.jpg" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+                        <h3 class="media-heading">@ViewBag.n <small>Pakistan</small></h3>
+                        <span><strong>Info: </strong></span>
+                        <span class="label label-warning">@ViewBag.u</span>
+                        <span class="label label-info">@ViewBag.g</span>
+                        <span class="label label-info">@ViewBag.e</span>
+                        <span class="label label-success">@ViewBag.p</span>
+                        <span class="label label-info">@ViewBag.d</span>
+
+                    </center>
+                    <hr>
+                    <center>
+                        <p class="text-left">
+                            <strong>Bio: </strong><br>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem dui, tempor sit amet commodo a, vulputate vel tellus.
+                        </p>
+                        <br>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough about Joe</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
